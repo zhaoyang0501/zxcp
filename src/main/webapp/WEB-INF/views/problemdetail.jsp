@@ -43,7 +43,6 @@
 		$("#submit-code-button").bind("click", function(){
 			alert($("#code").val());
 			alert(editor.getValue());
-			
 			$.ajax({
     			type : "POST",
     			url : $.ace.getContextPath() + "/submission/check",
@@ -154,6 +153,100 @@
 	            <a href="/submission/e5265f39698369bc40e207311af64365/" target="_blank">查看详情</a>
 	            </div> 
             </div>
+			});
+		
+	});
+</script>
+	</head>
+<body>
+<%@include file="./header.jsp" %>
+<!-- nav end -->
+
+<!-- custom body begin -->
+
+  <div class="container main">
+        <ul class="nav nav-tabs nav-tabs-google">
+            <li role="presentation" class="active">
+                <a href="/problem/2/">题目</a>
+            </li>
+            <li role="presentation">
+                <a href="/problem/2/submissions/">我的提交</a>
+            </li>
+        </ul>
+        <h2 class="text-center">${problem.name }</h2>
+
+		<p class="text-muted text-center">
+		    发布时间: ${problem.createDate }&nbsp;&nbsp;
+		    
+		    时间限制: ${problem.timelimit }ms&nbsp;&nbsp;
+		    内存限制: ${problem.cpulimit }M
+		</p>
+
+        <div>
+            <div class="problem-section">
+                <label class="problem-label">描述</label>
+                <div class="problem-detail">
+                <p>${problem.remark }
+                </p>
+                </div>
+            </div>
+            <div class="problem-section">
+                <label class="problem-label">输入</label>
+                <p class="problem-detail">
+                ${problem.input }
+                </p>
+            </div>
+            <div class="problem-section">
+                <label class="problem-label">输出</label>
+                <p class="problem-detail">${problem.output }</p>
+            </div>
+                <div class="problem-section">
+                    <label class="problem-label">样例输入</label>
+       				 <pre>${problem.inputemp }</pre>
+                </div>
+                
+                <div class="problem-section">
+                    <label class="problem-label">样例输出</label>
+        			 <pre>${problem.outputemp }</pre>
+                </div>
+               <div class="problem-section">
+                <label class="problem-label">难度</label>
+                <p class="problem-detail">
+                        <span class="label label-success">${problem.type }</span>
+                </p>
+            	</div>
+            	
+            	<div class="problem-section">
+                    <label class="problem-label">来源</label>
+                    <div class="problem-detail">${problem.reference }</div>
+                </div>
+            
+            <div>
+                <label>选择语言</label>
+                <div>
+                    <label class="radio-inline">
+                        <input type="radio" name="language" value="1" checked=""> C (GCC 4.8)
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="language" value="2"> C++ (G++ 4.3)
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="language" value="3"> Java (Oracle JDK 1.7)
+                    </label>
+                </div>
+            </div>
+            <div id="code-field">
+                <label class="problem-label">提交代码</label>
+                 <textarea id='code' rows="3" cols=""></textarea>
+            </div>
+            <hr>
+            <div id="submit-code">
+                <button type="button" class="btn btn-primary" id="submit-code-button">
+                	    提交代码
+                </button>
+            </div>
+            <div id="result">
+>>>>>>> branch 'master' of https://github.com/zhaoyang0501/zxcp.git
             </div>
             <hr>
         </div>
