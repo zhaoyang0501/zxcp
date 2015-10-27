@@ -42,17 +42,17 @@
 					<div class="span12">
 						<div class="content-widgets light-gray">
 							<div class="widget-head  bondi-blue" >
-								<h3>商品库存管理</h3>
+								<h3>问题管理</h3>
 							</div>
 							<div class="box well form-inline">
-								<span>商品名称：</span>
+								<span>问题：</span>
 								<input type="text" id="_name" >
 								<a onclick="$.adminProblem.initSearchDataTable()"
 									class="btn btn-info" data-loading-text="正在加载..."><i class="icon-search"></i>查询</a>
 							</div>
 							
 							<div class="widget-container">
-							<a class="btn btn-success" style="float: right; margin: 5px;" onclick="$.adminProblem.showProblemAddModal()"><i class="icon-plus"></i> 新品入库</a>
+							<a class="btn btn-success" style="float: right; margin: 5px;" onclick="$.adminProblem.showProblemAddModal()"><i class="icon-plus"></i> 问题录入</a>
 								<table class="responsive table table-striped table-bordered"
 									id="dt_table_view">
 									<thead>

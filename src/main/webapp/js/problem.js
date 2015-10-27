@@ -52,22 +52,17 @@ jQuery.adminProblem = {
 					}, {
 						"mDataProp" : "hard"
 					}, {
-						"mDataProp" : "reference"
-					}, {
-						"mDataProp" : "type"
-					}, {
 						"mDataProp" : "createDate"
 					},{
 						"mDataProp" : ""
 					}],
 					"aoColumnDefs" : [
-						{
-							'aTargets' : [6],
-							'fnRender' : function(oObj, sVal) {
-								return"  <button class=\"btn2 btn-info\" onclick=\"$.adminProblem.deleteProblem("+oObj.aData.id+")\"><i class=\"icon-trash\"></i> 删除</button>" +
-								" <button class=\"btn2 btn-info\" onclick=\"$.adminProblem.showEdit("+oObj.aData.id+")\"><i class=\"icon-pencil\"></i>修改</button>";
+					{
+						'aTargets' : [1],
+						'fnRender' : function(oObj, sVal) {
+							return "<a href='problemdetail/"+oObj.aData.id+"'> "+sVal+"</a>";
 							}
-						},
+					},
 					 {
 						'aTargets' : [ '_all' ],
 						'bSortable' : false,

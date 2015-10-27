@@ -34,43 +34,8 @@
 </script>
 	</head>
 <body>
-<nav class="navbar navbar-default">
-  <div class="container">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">首页</a>
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      
-      <ul class="nav navbar-nav">
-                <li class="active"><a href="problems">题目</a></li>
-                <li><a href="submissions/">提交</a></li>
-                <li><a href="contests/">比赛</a></li>
-                <li><a href="/about/">关于</a></li>
-      </ul>
-      
-      <ul class="nav navbar-nav navbar-right">
-        <li class="user1">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">user <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-<!-- nav end -->
-
+ <%@include file="./header.jsp" %>
 <!-- custom body begin -->
-
-    
     <div class="container main">
         <div class="row">
             <div class="col-md-9 col-lg-9  ">
@@ -82,35 +47,16 @@
                                 <input type="submit" value="搜索" class="btn btn-primary">
                             </div>
                         </form>
-                        
-                        
-                        <form role="form" class="form-inline">
-						 <div class="form-group">
-							<label for="input-email" class="sr-only">Email address</label>
-							<input id="input-email" type="email" placeholder="Type your email" class="form-control">
-						 </div>
-						 <div class="form-group">
-							<label for="input-password" class="sr-only">Password</label>
-							<input id="input-password" type="password" placeholder="Type your password" class="form-control">
-						 </div>
-						 <div class="checkbox c-checkbox">
-							<label>
-							   <input type="checkbox">
-							   <span class="fa fa-check"></span>Remember</label>
-						 </div>
-						 <button type="submit" class="btn btn-default">Sign in</button>
-					  </form>
-                        
                     </div>
                 </div>
                 <div>
                     <table class="table table-striped" id='dt_table_view'>
                         <thead>
                         <tr>
-                            <th></th>
                             <th>#</th>
                             <th>题目</th>
-                            <th><a href="/problems/?order_by=difficulty">难度</a></th>
+                            <th>难度</th>
+                              <th>发布时间</th>
                             <th>通过率</th>
                         </tr>
                         </thead>
@@ -124,20 +70,6 @@
             </div>
 
             <div class="col-md-3 col-lg-3">
-                
-<div class="panel panel-info">
-    <div class="panel-heading">
-        <h3 class="panel-title">
-            <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-            公告
-        </h3></div>
-    <div class="panel-body">
-    
-        
-           <p>暂无可显示的公告</p>
-        
-    </div>
-</div>
                 <div class="panel panel-info">
                     <div class="panel-heading">
                         <h3 class="panel-title">
@@ -165,83 +97,7 @@
                                 搜索
                             </li>
                         
-                            <li class="list-group-item problem-tag"
-                                onclick="location.href='/problems/?tag=数据结构'">
-                                <span class="badge">2</span>
-                                数据结构
-                            </li>
-                        
-                            <li class="list-group-item problem-tag"
-                                onclick="location.href='/problems/?tag=位运算'">
-                                <span class="badge">2</span>
-                                位运算
-                            </li>
-                        
-                            <li class="list-group-item problem-tag"
-                                onclick="location.href='/problems/?tag=简单'">
-                                <span class="badge">2</span>
-                                简单
-                            </li>
-                        
-                            <li class="list-group-item problem-tag"
-                                onclick="location.href='/problems/?tag=线段树'">
-                                <span class="badge">2</span>
-                                线段树
-                            </li>
-                        
-                            <li class="list-group-item problem-tag"
-                                onclick="location.href='/problems/?tag=栈'">
-                                <span class="badge">2</span>
-                                栈
-                            </li>
-                        
-                            <li class="list-group-item problem-tag"
-                                onclick="location.href='/problems/?tag=字符串'">
-                                <span class="badge">1</span>
-                                字符串
-                            </li>
-                        
-                            <li class="list-group-item problem-tag"
-                                onclick="location.href='/problems/?tag=康拓展开'">
-                                <span class="badge">1</span>
-                                康拓展开
-                            </li>
-                        
-                            <li class="list-group-item problem-tag"
-                                onclick="location.href='/problems/?tag=voting'">
-                                <span class="badge">1</span>
-                                voting
-                            </li>
-                        
-                            <li class="list-group-item problem-tag"
-                                onclick="location.href='/problems/?tag=manacher'">
-                                <span class="badge">1</span>
-                                manacher
-                            </li>
-                        
-                            <li class="list-group-item problem-tag"
-                                onclick="location.href='/problems/?tag=数学规律'">
-                                <span class="badge">1</span>
-                                数学规律
-                            </li>
-                        
-                            <li class="list-group-item problem-tag"
-                                onclick="location.href='/problems/?tag=素数'">
-                                <span class="badge">1</span>
-                                素数
-                            </li>
-                        
-                            <li class="list-group-item problem-tag"
-                                onclick="location.href='/problems/?tag=dp'">
-                                <span class="badge">1</span>
-                                dp
-                            </li>
-                        
-                            <li class="list-group-item problem-tag"
-                                onclick="location.href='/problems/?tag=数组'">
-                                <span class="badge">1</span>
-                                数组
-                            </li>
+                       
                         
                     </ul>
                 </div>
@@ -249,5 +105,6 @@
             </div>
         </div>
     </div>
+     <%@include file="./foot.jsp" %>
 </body>
 </html>
