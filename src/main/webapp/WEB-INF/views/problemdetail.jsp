@@ -43,7 +43,20 @@
 		$("#submit-code-button").bind("click", function(){
 			alert($("#code").val());
 			alert(editor.getValue());
-			});
+			
+			$.ajax({
+    			type : "POST",
+    			url : $.ace.getContextPath() + "/submission/check",
+    			dataType : "json",
+    			data:{
+    				"code":editor.getValue(),
+    				"problemid":"${problem.id}",
+    				"language":$("input[name='language']").val()	
+    			},
+    			success : function(json) {
+    			}
+    		});
+		});
 		
 	});
 </script>
@@ -136,6 +149,11 @@
                 </button>
             </div>
             <div id="result">
+            <div class="alert alert-danger result" role="alert">
+	            <div class="alert-link">Compile Error!&nbsp;&nbsp; 
+	            <a href="/submission/e5265f39698369bc40e207311af64365/" target="_blank">查看详情</a>
+	            </div> 
+            </div>
             </div>
             <hr>
         </div>

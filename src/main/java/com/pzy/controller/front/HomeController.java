@@ -1,5 +1,7 @@
 package com.pzy.controller.front;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,9 +10,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.pzy.entity.Submission;
 import com.pzy.entity.User;
 import com.pzy.service.ProblemService;
+import com.pzy.service.SubmissionService;
 import com.pzy.service.UserService;
 /***
  * @author Administrator
@@ -24,6 +29,8 @@ public class HomeController {
 	private UserService userService;
 	@Autowired
 	private ProblemService problemService;
+	@Autowired
+	private SubmissionService submisstionService;
 	@RequestMapping("index")
 	public String index() {
 		return "index";
@@ -70,6 +77,20 @@ public class HomeController {
 	public String problemdetail(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("problem", problemService.find(id));
 		return "problemdetail";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "submission/check", method = RequestMethod.POST)
+	public Submission submission(Long problemid,String code,String language, Model model,HttpSession httpSession ) {
+		Submission bean=new Submission();
+		bean.setCreateDate(new Date());
+		bean.setInput(code);
+		bean.setLanguage(language);
+		bean.setProblem(this.problemService.find(problemid));
+		bean.setUser((User)httpSession.getAttribute("user"));
+		bean=submisstionService.validateResult(bean);
+		submisstionService.save(bean);
+		return bean;
 	}
 }
 

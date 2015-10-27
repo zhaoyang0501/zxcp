@@ -3,9 +3,11 @@ package com.pzy.entity;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 @Entity
 @Table(name = "t_Submission")
@@ -13,7 +15,7 @@ public class Submission {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Problem problem;
 	
 	private Date createDate;
@@ -59,8 +61,16 @@ public class Submission {
 	public void setInput(String input) {
 		this.input = input;
 	}
+	@ManyToOne(fetch = FetchType.EAGER)
 	private User user;
 	private String result;
 	private String language;
 	public String input;
+	private String  state;
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
 }
