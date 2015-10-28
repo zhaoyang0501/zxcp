@@ -2,6 +2,7 @@ package com.pzy.controller.front;
 import java.util.Date;
 
 import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.pzy.entity.Problem;
 import com.pzy.entity.Submission;
 import com.pzy.entity.User;
 import com.pzy.service.ProblemService;
@@ -45,7 +48,7 @@ public class HomeController {
 	}
 	@RequestMapping(value = "register",method = RequestMethod.POST)
 	public String doregister(User user,Model model ) {
-		model.addAttribute("tip", "注册成功，请登录");
+		model.addAttribute("tip", "娉ㄥ唽鎴愬姛锛岃鐧诲綍");
 		userService.save(user);
 		return "login";
 	}
@@ -58,7 +61,7 @@ public class HomeController {
 	public String dologin(String username,String password,Model model,HttpSession httpSession ) {
 		User user=userService.login(username, password);
 		if(user==null){
-			model.addAttribute("tip", "用户名密码不正确");
+			model.addAttribute("tip", "鐢ㄦ埛鍚嶅瘑鐮佷笉姝ｇ‘");
 			return "login";
 		}else{
 			httpSession.setAttribute("user", user);
@@ -76,6 +79,13 @@ public class HomeController {
 	public String problemdetail(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("problem", problemService.find(id));
 		return "problemdetail";
+	}
+	@RequestMapping(value = "problemdetail/{id}/submission", method = RequestMethod.GET)
+	public String mysubmission(@PathVariable("id") Long id, Model model,HttpSession httpSession) {
+		Problem problem=problemService.find(id);
+		model.addAttribute("problem",problem);
+		model.addAttribute("submissions", submisstionService.findByUserAndProblem((User)httpSession.getAttribute("user"),problem));
+		return "mysubmission";
 	}
 	@ResponseBody
 	@RequestMapping(value = "submission/check", method = RequestMethod.POST)

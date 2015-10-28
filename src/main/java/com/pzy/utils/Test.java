@@ -45,17 +45,15 @@ public class Test {
 	    }  
 	 public static void complier(){
 		 try {  
-	          
-	            Process process = Runtime.getRuntime().exec("javac"); 
-	            PrintWriter writer = new PrintWriter(process.getOutputStream());  
-	            new CommandThread(writer).start(); 
+	            Process process = Runtime.getRuntime().exec("javac d:/test/Main1.java"); 
 	            BufferedReader br = new BufferedReader(new InputStreamReader(process.getErrorStream()));  
-	              
-	            String s = null;  
+	            String s = null;
+	            String res="";
 	            while ((s = br.readLine()) != null) {  
-	                System.out.println(s);  
+	            	res+=s;
+	                //System.out.println("11"+s);  
 	            }  
-	            Thread.currentThread().interrupt();  
+	            System.out.println("11"+res);  
 	        } catch (Exception e) {  
 	            e.printStackTrace();  
 	        }  
@@ -64,16 +62,17 @@ public class Test {
 	            Process process = Runtime.getRuntime().exec("D:\\test\\bat.bat"); 
 	            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));  
 	            DataOutputStream dataOut = new DataOutputStream(process.getOutputStream());
-                dataOut.writeBytes("1\n3\n");
+                dataOut.writeBytes("1\n2\n");
                 dataOut.flush();
                 dataOut.close();
                 String result="";
 	            String line = bufferedReader.readLine();  
-	            while (line!=null) {  
+	            while (line!=null) { 
+	            	 System.out.println("debug----"+line);
 	            	  result=line;
 	            	 line= bufferedReader.readLine(); 
 	            }
-	            System.out.println("debug----"+result);
+	            System.out.println("debug11----"+result);
 	 }
 	 public static void createFile(String str) throws IOException{
 		  String lujing = "d:\\test\\Main.java";
@@ -107,5 +106,7 @@ public class Test {
 	                e.printStackTrace();  
 	            }  
 	        }  
-	    }  
+	    }
+	 
+	 
 }

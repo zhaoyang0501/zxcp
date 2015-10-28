@@ -15,24 +15,30 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import com.pzy.entity.Problem;
 import com.pzy.entity.Submission;
+import com.pzy.entity.User;
 import com.pzy.repository.SubmissionRepository;
+import com.pzy.service.autoValidater.AutoValidater;
+import com.pzy.service.autoValidater.JavaValidater;
 
 @Service
 public class SubmissionService {
 	@Autowired
 	private SubmissionRepository submissionRepository;
-	
+	private AutoValidater autoValidater;
 	public List<Submission> findAll(){
 		return (List<Submission> )submissionRepository.findAll();
 	}
 	public Submission validateResult(Submission submission){
-		submission.setResult("±‡“Î¥ÌŒÛ");
-		submission.setState("±‡“Î¥ÌŒÛ");
+		if(submission.getLanguage().equals("3")){
+			autoValidater= new JavaValidater();
+		}
+		autoValidater.validate(submission);
 		return submission;
 	}
 	public Page<Submission> findAll(final int pageNumber, final int pageSize,
-			final String name) {
+			final User user) {
 		PageRequest pageRequest = new PageRequest(pageNumber - 1, pageSize,
 				new Sort(Direction.DESC, "id"));
 
@@ -40,10 +46,9 @@ public class SubmissionService {
 			public Predicate toPredicate(Root<Submission> root,
 					CriteriaQuery<?> query, CriteriaBuilder cb) {
 				Predicate predicate = cb.conjunction();
-				if (name != null) {
+				if (user != null) {
 					predicate.getExpressions().add(
-							cb.like(root.get("name").as(String.class),"%"+ name
-									+ "%"));
+							cb.equal(root.get("user").as(User.class),user));
 				}
 				return predicate;
 			}
@@ -72,5 +77,8 @@ public class SubmissionService {
 		return submissionRepository.findAll(
 				new PageRequest(0, 6, new Sort(Direction.DESC, "createDate")))
 				.getContent();
+	}
+	public List<Submission> findByUserAndProblem(User user,Problem problem) {
+		return this.submissionRepository.findByUserAndProblem(user,problem);
 	}
 }
