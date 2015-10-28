@@ -87,86 +87,49 @@
   <div class="container main">
         <ul class="nav nav-tabs nav-tabs-google">
             <li role="presentation" class="active">
-                 <a href="${pageContext.request.contextPath}/problemdetail/${problem.id }">题目</a>
+                 <a href="${pageContext.request.contextPath}/contests/${bean.id }">比赛详情</a>
             </li>
             <li role="presentation">
-                 <a href="${pageContext.request.contextPath}/problemdetail/${problem.id }/submission">我的提交</a>
+                <a href="${pageContext.request.contextPath}/contests/${bean.id }/problems">题目列表</a>
+            </li>
+            <li role="presentation">
+                    <a href="${pageContext.request.contextPath}/contests/${bean.id }/submisstion">提交</a>
+            </li>
+            <li role="presentation">
+                  <a href="${pageContext.request.contextPath}/contests/${bean.id }/rank">提交</a>
             </li>
         </ul>
-        <h2 class="text-center">${problem.name }</h2>
+        
+<h2 class="text-center">${bean.name }</h2>
 
-		<p class="text-muted text-center">
-		    发布时间: ${problem.createDate }&nbsp;&nbsp;
-		    
-		    时间限制: ${problem.timelimit }ms&nbsp;&nbsp;
-		    内存限制: ${problem.cpulimit }M
-		</p>
+<div id="timer" class="text-center"></div>
 
-        <div>
-            <div class="problem-section">
-                <label class="problem-label">描述</label>
-                <div class="problem-detail">
-                <p>${problem.remark }
-                </p>
-                </div>
-            </div>
-            <div class="problem-section">
-                <label class="problem-label">输入</label>
-                <p class="problem-detail">
-                ${problem.input }
-                </p>
-            </div>
-            <div class="problem-section">
-                <label class="problem-label">输出</label>
-                <p class="problem-detail">${problem.output }</p>
-            </div>
-                <div class="problem-section">
-                    <label class="problem-label">样例输入</label>
-       				 <pre>${problem.inputemp }</pre>
-                </div>
-                
-                <div class="problem-section">
-                    <label class="problem-label">样例输出</label>
-        			 <pre>${problem.outputemp }</pre>
-                </div>
-               <div class="problem-section">
-                <label class="problem-label">难度</label>
-                <p class="problem-detail">
-                        <span class="label label-success">${problem.type }</span>
-                </p>
-            	</div>
-            	
-            	<div class="problem-section">
-                    <label class="problem-label">来源</label>
-                    <div class="problem-detail">${problem.reference }</div>
-                </div>
-            
-            <div>
-                <label>选择语言</label>
-                <div>
-                    <label class="radio-inline">
-                        <input type="radio" name="language" value="1" > C (GCC 4.8)
-                    </label>
-                    <label class="radio-inline">
-                        <input type="radio" name="language" value="2"> C++ (G++ 4.3)
-                    </label>
-                    <label class="radio-inline">
-                        <input type="radio" name="language" value="3" > Java (Oracle JDK 1.7)
-                    </label>
-                </div>
-            </div>
-            <div id="code-field">
-                <label class="problem-label">提交代码</label>
-                 <textarea id='code' rows="3" cols=""></textarea>
-            </div>
-            <hr>
-            <div id="submit-code">
-                <button type="button" class="btn btn-primary" id="submit-code-button">
-                	    提交代码
-                </button>
-            </div>
-            <div id="result">
-            </div>
+<hr>
+<div>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>开始时间</th>
+            <th>结束时间</th>
+            <th>比赛类型</th>
+             <th>状态</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>${bean.begainDate }</td>
+            <td>${bean.endDate }</td>
+           
+             <td>${bean.type }</td>
+              <td class='warning'>${bean.state }</td>
+        </tr>
+        </tbody>
+    </table>
+    <hr>
+    <div class="text-center"><p>${bean.remark }</p></div>
+</div>
+<p class="text-center"></p>
+</div>
     <%@include file="./foot.jsp" %>
 </body>
 </html>

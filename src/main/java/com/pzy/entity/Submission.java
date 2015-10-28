@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 @Entity
 @Table(name = "t_Submission")
 public class Submission {
@@ -17,7 +19,7 @@ public class Submission {
 	private Long id;
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Problem problem;
-	
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm")
 	private Date createDate;
 	public Long getId() {
 		return id;

@@ -4,7 +4,7 @@
 <html lang="ch">
 <%@ include file="../common/meta.jsp"%>
 <head>
-<script type="text/javascript" src="${pageContext.request.contextPath}/admin/js/ace/admin.contest.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/admin/js/ace/admin.contestproblem.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/admin/js/falgun/bootbox.js"></script>
 <script src="${pageContext.request.contextPath}/admin/js/falgun/bootstrap-datetimepicker.min.js"></script>
 <script src="${pageContext.request.contextPath}/admin/js/falgun/bootstrap-datetimepicker.zh-CN.js"></script>
@@ -52,28 +52,31 @@
 					<div class="span12">
 						<div class="content-widgets light-gray">
 							<div class="widget-head  bondi-blue" >
-								<h3>竞赛管理</h3>
+								<h3>竞赛题目管理</h3>
 							</div>
 							<div class="box well form-inline">
-								<span>标题：</span>
-								<input type="text" id="_name" >
-								<a onclick="$.adminContest.initSearchDataTable()"
+								<span>选择竞赛：</span>
+								<select name="_cid" id="_cid">
+								<c:forEach items="${contests}" var="bean">
+									<option value="${bean.id}">${bean.name } </option>
+								</c:forEach>
+								</select>
+								<a onclick="$.adminContestproblem.initSearchDataTable()"
 									class="btn btn-info" data-loading-text="正在加载..."><i class="icon-search"></i>查询</a>
 							</div>
 							
 							<div class="widget-container">
-							<a class="btn btn-success" style="float: right; margin: 5px;" onclick="$.adminContest.showContestAddModal()"><i class="icon-plus"></i> 问题录入</a>
+							<a class="btn btn-success" style="float: right; margin: 5px;" onclick="$.adminContestproblem.showContestproblemAddModal()"><i class="icon-plus"></i> 添加题目</a>
 								<table class="responsive table table-striped table-bordered"
 									id="dt_table_view">
 									<thead>
 										<tr>
 											<th >id</th>
-											<th >标题</th>
-											<th >开始时间</th>
-											<th >结束时间</th>
-											<th >描述</th>
-											<th >类别</th>
-											<th >状态</th>
+											<th >名称</th>
+											<th >难度</th>
+											<th >来源</th>
+											<th >分类</th>
+											<th >发布时间</th>
 											<th >操作</th>
 										</tr>
 									</thead>
@@ -100,56 +103,14 @@
 				<div class="span12">
 					<div class="form-container grid-form form-background left-align form-horizontal">
 						 <form id='_form' >
-							<input type="hidden" id="id" name='id' value="">
+							
 							<div class="control-group">
-								<label for="name" class="control-label">名称：</label>
+								<label for="name" class="control-label">选择题目：</label>
 								<div class="controls">
-									<input type="text"   name='name' value="" placeholder="">
-								</div>
-							</div>
-							
-							<div class="control-group">
-								<label for="name" class="control-label">描述：</label>
-								<div class="controls">
-									<textarea rows="3" cols=""  name='remark'>
-									</textarea>
-								</div>
-							</div>
-							
-							<div class="control-group">
-								<label for="name" class="control-label">开始时间：</label>
-								<div class="controls ">
-										 <input  name="begainDate" type="text" readonly="readonly" class="form_datetime">
-										 <span class="add-on"><i class="icon-th"></i></span>
-									   </div>
-							</div>
-							<div class="control-group">
-								<label for="name" class="control-label">结束时间：</label>
-								<div class="controls ">
-										 <input  name="endDate" type="text" readonly="readonly" class="form_datetime">
-										 <span class="add-on"><i class="icon-th"></i></span>
-									   </div>
-							</div>
-							
-							
-							<div class="control-group">
-								<label for="name" class="control-label">类别：</label>
-								<div class="controls">
-									<select  name="type">
-										<option value="公开赛">公开赛</option>
-										<option value="公开赛">小组赛</option>
-										<option value="公开赛">考试</option>
-									</select>
-								</div>
-							</div>
-							
-							<div class="control-group">
-								<label for="name" class="control-label">状态：</label>
-								<div class="controls">
-									<select  name="state">
-										<option value="未开始">未开始</option>
-										<option value="进行中">进行中</option>
-										<option value="已结束">已结束</option>
+									<select name="_pid" id="_pid">
+										<c:forEach items="${problems}" var="bean">
+											<option value="${bean.id}">${bean.name } </option>
+										</c:forEach>
 									</select>
 								</div>
 							</div>
@@ -160,7 +121,7 @@
 		</div>
 		
 		<div class="modal-footer center" id="div_footer">
-			<a class="btn btn-primary" onclick="$.adminContest.saveContest()">保存</a>
+			<a class="btn btn-primary" onclick="$.adminContestproblem.saveContestproblem()">保存</a>
 			<a href="#"   class="btn" data-dismiss="modal" id="closeViewModal">关闭</a>
 		</div>
 	</div>

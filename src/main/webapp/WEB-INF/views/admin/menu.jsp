@@ -27,6 +27,9 @@
 			<div class="tab-pane active dailyreport" id="dailyreport">
 				<ul id="nav" class="accordion-nav" >
 				<li><a href="${pageContext.request.contextPath}/admin/problem/index"><i class="icon-pencil"></i> 问题管理</a></li>
+				<li><a href="${pageContext.request.contextPath}/admin/contest/index"><i class="icon-pencil"></i> 竞赛管理</a></li>
+				<li><a href="${pageContext.request.contextPath}/admin/contestproblem/index"><i class="icon-pencil"></i> 竞赛题目管理</a></li>
+				<li><a href="${pageContext.request.contextPath}/admin/user/index"><i class="icon-pencil"></i>注册用户管理</a></li>
 					
 				<%-- <c:if test="${sessionScope.adminuser.username=='admin'}">
 						<li><a href="${pageContext.request.contextPath}/admin/user/index"><i class="icon-pencil"></i> 商户管理</a></li>

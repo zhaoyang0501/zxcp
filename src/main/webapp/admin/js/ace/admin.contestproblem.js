@@ -1,8 +1,8 @@
-jQuery.adminContest = {
-		contestDataTable:null,
+jQuery.adminContestproblem = {
+		contestproblemDataTable:null,
 		initSearchDataTable : function() {
-			if (this.contestDataTable == null) {
-				this.contestDataTable = $('#dt_table_view').dataTable({
+			if (this.contestproblemDataTable == null) {
+				this.contestproblemDataTable = $('#dt_table_view').dataTable({
 					"sDom" : "<'row-fluid'<'span6'l>r>t<'row-fluid'<'span6'i><'span6'p>>",
 					"sPaginationType" : "bootstrap",
 					"oLanguage" : {
@@ -26,15 +26,15 @@ jQuery.adminContest = {
 					"sServerMethod" : "POST",
 					"bProcessing" : true,
 					"bSort" : false,
-					"sAjaxSource" : $.ace.getContextPath() + "/admin/contest/list",
+					"sAjaxSource" : $.ace.getContextPath() + "/admin/contestproblem/list",
 					"fnDrawCallback" : function(oSettings) {
 						$('[rel="popover"],[data-rel="popover"]').popover();
 					},
 					"fnServerData" : function(sSource, aoData, fnCallback) {
-						var name = $("#_name").val();
+						var name = $("#_cid").val();
 						if (!!name) {
 							aoData.push({
-								"name" : "contestname",
+								"name" : "contextid",
 								"value" : name
 							});
 						}
@@ -51,26 +51,23 @@ jQuery.adminContest = {
 					"aoColumns" : [ {
 						"mDataProp" : "id"
 					}, {
-						"mDataProp" : "name"
+						"mDataProp" : "problem.name"
 					}, {
-						"mDataProp" : "begainDate"
+						"mDataProp" : "problem.hard"
 					}, {
-						"mDataProp" : "endDate"
+						"mDataProp" : "problem.reference"
 					}, {
-						"mDataProp" : "remark"
+						"mDataProp" : "problem.type"
 					}, {
-						"mDataProp" : "type"
-					},{
-						"mDataProp" : "state"
+						"mDataProp" : "problem.createDate"
 					},{
 						"mDataProp" : ""
 					}],
 					"aoColumnDefs" : [
 						{
-							'aTargets' : [7],
+							'aTargets' : [6],
 							'fnRender' : function(oObj, sVal) {
-								return"  <button class=\"btn2 btn-info\" onclick=\"$.adminContest.deleteContest("+oObj.aData.id+")\"><i class=\"icon-trash\"></i> 删除</button>" +
-								" <button class=\"btn2 btn-info\" onclick=\"$.adminContest.showEdit("+oObj.aData.id+")\"><i class=\"icon-pencil\"></i>修改</button>";
+								return"  <button class=\"btn2 btn-info\" onclick=\"$.adminContestproblem.deleteContestproblem("+oObj.aData.id+")\"><i class=\"icon-trash\"></i> 删除</button>";
 							}
 						},
 					 {
@@ -81,23 +78,23 @@ jQuery.adminContest = {
 
 				});
 			} else {
-				var oSettings = this.contestDataTable.fnSettings();
+				var oSettings = this.contestproblemDataTable.fnSettings();
 				oSettings._iDisplayStart = 0;
-				this.contestDataTable.fnDraw(oSettings);
+				this.contestproblemDataTable.fnDraw(oSettings);
 			}
 
 		},
-		deleteContest :function(id){
+		deleteContestproblem :function(id){
 			bootbox.confirm( "是否确认删除？", function (result) {
 	            if(result){
 	            	$.ajax({
 	        			type : "get",
-	        			url : $.ace.getContextPath() + "/admin/contest/delete/"+id,
+	        			url : $.ace.getContextPath() + "/admin/contestproblem/delete/"+id,
 	        			dataType : "json",
 	        			success : function(json) {
 	        				if(json.state=='success'){
 	        					noty({"text":""+ json.msg +"","layout":"top","type":"success","timeout":"2000"});
-	        					$.adminContest.initSearchDataTable();
+	        					$.adminContestproblem.initSearchDataTable();
 	        				}else{
 	        					noty({"text":""+ json.msg +"","layout":"top","type":"warning"});
 	        				}
@@ -106,7 +103,7 @@ jQuery.adminContest = {
 	            }
 	        });
 		},
-		showContestAddModal: function(id){
+		showContestproblemAddModal: function(id){
 			$("#id").val("");
 			$('#_modal').modal({
 			});
@@ -116,7 +113,7 @@ jQuery.adminContest = {
 			$("#id").val(id);
 			$.ajax({
     			type : "get",
-    			url : $.ace.getContextPath() + "/admin/contest/get/"+id,
+    			url : $.ace.getContextPath() + "/admin/contestproblem/get/"+id,
     			dataType : "json",
     			success : function(json) {
     				if(json.state=='success'){
@@ -133,17 +130,20 @@ jQuery.adminContest = {
 			$("#_modal").modal('show');
 		},
 		
-		saveContest: function(id){
+		saveContestproblem: function(id){
 			$.ajax({
     			type : "post",
-    			url : $.ace.getContextPath() + "/admin/contest/save",
-    			data:$("form").serialize(),
+    			url : $.ace.getContextPath() + "/admin/contestproblem/save",
+    			data:{
+    				"pid":$("#_pid").val(),
+    				"cid":$("#_cid").val()
+    			},
     			dataType : "json",
     			success : function(json) {
     				if(json.state=='success'){
     					$("#_modal").modal('hide');
     					noty({"text":""+ json.msg +"","layout":"top","type":"success","timeout":"2000"});
-    					$.adminContest.initSearchDataTable();
+    					$.adminContestproblem.initSearchDataTable();
     				}else{
     					noty({"text":""+ json.msg +"","layout":"top","type":"warning"});
     				}

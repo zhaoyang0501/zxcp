@@ -94,7 +94,7 @@ jQuery.adminProblem = {
 	        			dataType : "json",
 	        			success : function(json) {
 	        				if(json.state=='success'){
-	        					noty({"text":""+ json.resultMap.msg +"","layout":"top","type":"success","timeout":"2000"});
+	        					noty({"text":""+ json.msg +"","layout":"top","type":"success","timeout":"2000"});
 	        					$.adminProblem.initSearchDataTable();
 	        				}else{
 	        					noty({"text":""+ json.msg +"","layout":"top","type":"warning"});
