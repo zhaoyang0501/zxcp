@@ -15,6 +15,8 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import com.pzy.entity.Contest;
+import com.pzy.entity.ContestProblem;
 import com.pzy.entity.Problem;
 import com.pzy.entity.Submission;
 import com.pzy.entity.User;
@@ -80,5 +82,14 @@ public class SubmissionService {
 	}
 	public List<Submission> findByUserAndProblem(User user,Problem problem) {
 		return this.submissionRepository.findByUserAndProblem(user,problem);
+	}
+	public List<Submission> findByContest(Contest contest) {
+		return this.submissionRepository.findByContestProblemContest(contest);
+	}
+	public List<Submission> findByContestProblem(ContestProblem contestProblem) {
+		return this.submissionRepository.findByContestProblem(contestProblem);
+	}
+	public List<Submission> findByContestProblemAndUser(ContestProblem contestProblem,User user) {
+		return this.submissionRepository.findByContestProblemAndUser(contestProblem, user);
 	}
 }

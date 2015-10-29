@@ -3,6 +3,7 @@ import java.util.Date;
 
 import javax.servlet.http.HttpSession;
 
+import org.hibernate.stat.internal.CategorizedStatistics;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.pzy.entity.Problem;
 import com.pzy.entity.Submission;
 import com.pzy.entity.User;
+import com.pzy.service.CategoryService;
+import com.pzy.service.ContestProblemService;
 import com.pzy.service.ProblemService;
 import com.pzy.service.SubmissionService;
 import com.pzy.entity.User;
@@ -33,13 +36,18 @@ public class HomeController {
 	private ProblemService problemService;
 	@Autowired
 	private SubmissionService submisstionService;
+	@Autowired
+	private CategoryService categoryService;
+	@Autowired
+	private  ContestProblemService sontestProblemService;
 	@RequestMapping("index")
 	public String index() {
 		return "index";
 	}
 
 	@RequestMapping("problem")
-	public String problem() {
+	public String problem(Model model ) {
+		model.addAttribute("categorys",categoryService.findAll());
 		return "problem";
 	}
 	@RequestMapping(value = "register",method = RequestMethod.GET)
@@ -89,11 +97,13 @@ public class HomeController {
 	}
 	@ResponseBody
 	@RequestMapping(value = "submission/check", method = RequestMethod.POST)
-	public Submission submission(Long problemid,String code,String language, Model model,HttpSession httpSession ) {
+	public Submission submission(Long contestProblemid, Long problemid,String code,String language, Model model,HttpSession httpSession ) {
 		Submission bean=new Submission();
 		bean.setCreateDate(new Date());
 		bean.setInput(code);
 		bean.setLanguage(language);
+		if(contestProblemid!=null)
+			bean.setContestProblem(sontestProblemService.find(contestProblemid));
 		bean.setProblem(this.problemService.find(problemid));
 		bean.setUser((User)httpSession.getAttribute("user"));
 		bean=submisstionService.validateResult(bean);

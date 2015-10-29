@@ -93,7 +93,7 @@
                 <a href="${pageContext.request.contextPath}/contests/${bean.id }/problems">题目列表</a>
             </li>
             <li role="presentation">
-                    <a href="${pageContext.request.contextPath}/contests/${bean.id }/submisstion">提交</a>
+                    <a href="${pageContext.request.contextPath}/contests/${bean.id }/submission">提交</a>
             </li>
             <li role="presentation">
                   <a href="${pageContext.request.contextPath}/contests/${bean.id }/rank">排名</a>
@@ -113,8 +113,8 @@
 	                        <tbody>
 	                        <c:forEach items="${problems }" var="bean">
 							<tr >
-								<td class="center"><a href="${pageContext.request.contextPath}/submission/${bean.id }">  ${bean.id }</a></td>
-								<td class="center"><a href="${pageContext.request.contextPath}/problemdetail/${bean.problem.id }"> ${bean.problem.name }</a></td>
+								<td class="center"><a href="${pageContext.request.contextPath}/contests/${bean.contest.id}/problems/${bean.id}/"> ${bean.id }</a></td>
+								<td class="center"><a href="${pageContext.request.contextPath}/contests/${bean.contest.id}/problems/${bean.id}/"> ${bean.problem.name }</a></td>
 								<td class="center">${bean.problem.hard }</td>
 								<td class="center">${bean.problem.createDate }</td>
 								<td class="center">

@@ -1,6 +1,10 @@
 jQuery.adminProblem = {
 		problemDataTable:null,
-		initSearchDataTable : function() {
+		initSearchDataTable : function(typeid) {
+			if(typeid!=null)
+				$("#categoryid").val(typeid);
+			else 
+				$("#categoryid").val("");
 			if (this.problemDataTable == null) {
 				this.problemDataTable = $('#dt_table_view').dataTable({
 					"sDom" : "<'row-fluid'<'col-md-6'l>r>t<'row-fluid'<'col-md-6'i><'col-md-6 pager'p>>",
@@ -28,11 +32,19 @@ jQuery.adminProblem = {
 					"bSort" : false,
 					"sAjaxSource" : $.ace.getContextPath() + "/admin/problem/list",
 					"fnServerData" : function(sSource, aoData, fnCallback) {
-						var name = $("#_name").val();
+						var name = $("#keyword").val();
+						var categoryid = $("#categoryid").val();
 						if (!!name) {
 							aoData.push({
 								"name" : "problemname",
 								"value" : name
+							});
+						}
+						alert(categoryid);
+						if (!!categoryid) {
+							aoData.push({
+								"name" : "categoryid",
+								"value" : categoryid
 							});
 						}
 						$.ajax({

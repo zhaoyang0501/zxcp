@@ -11,7 +11,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       
       <ul class="nav navbar-nav">
-                <li class="active"><a href="${pageContext.request.contextPath}/problem">题目</a></li>
+                <li ><a href="${pageContext.request.contextPath}/problem">题目</a></li>
                 <li><a href="${pageContext.request.contextPath}/submission">提交</a></li>
                 <li><a href="${pageContext.request.contextPath}/contests">比赛</a></li>
                 <li><a href="${pageContext.request.contextPath}/about">关于</a></li>

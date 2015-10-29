@@ -165,8 +165,9 @@
                 	    提交代码
                 </button>
             </div>
-            <div id="result">
-            </div>
+            <div id="result"> </div>
+          </div>
+      </div>
     <%@include file="./foot.jsp" %>
 </body>
 </html>

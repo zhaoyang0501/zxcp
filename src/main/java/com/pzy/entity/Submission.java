@@ -21,6 +21,17 @@ public class Submission {
 	private Problem problem;
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm")
 	private Date createDate;
+	@ManyToOne(fetch = FetchType.EAGER)
+	private ContestProblem contestProblem;
+	
+	private Double spend;
+	
+	public Double getSpend() {
+		return spend;
+	}
+	public void setSpend(Double spend) {
+		this.spend = spend;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -74,5 +85,11 @@ public class Submission {
 	}
 	public void setState(String state) {
 		this.state = state;
+	}
+	public ContestProblem getContestProblem() {
+		return contestProblem;
+	}
+	public void setContestProblem(ContestProblem contestProblem) {
+		this.contestProblem = contestProblem;
 	}
 }

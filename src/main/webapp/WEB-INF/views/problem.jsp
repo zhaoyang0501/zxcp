@@ -43,8 +43,8 @@
                     <div class="pull-right">
                         <form class="form-inline" method="get">
                             <div class="form-group">
-                                <input name="keyword" class="form-control" placeholder="请输入关键词">
-                                <input type="submit" value="搜索" class="btn btn-primary">
+                                <input id="keyword" class="form-control" placeholder="请输入关键词">
+                                <input type="button" value="搜索" class="btn btn-primary" onclick="$.adminProblem.initSearchDataTable()">
                             </div>
                         </form>
                     </div>
@@ -74,30 +74,15 @@
                     <div class="panel-heading">
                         <h3 class="panel-title">
                             <span class="glyphicon glyphicon-tag" aria-hidden="true"></span>
-                            分类
+                       		   分类
                         </h3>
                     </div>
                     <ul class="list-group">
-                        
-                            <li class="list-group-item problem-tag"
-                                onclick="location.href='/problems/?tag=qduoj 第一次月赛'">
-                                <span class="badge">7</span>
-                                qduoj 第一次月赛
+                        <c:forEach items="${categorys }" var="bean">
+                         <li class="list-group-item problem-tag">
+                                <a href="#"  onclick="$.adminProblem.initSearchDataTable( ${bean.id})"> ${bean.name}</a>
                             </li>
-                        
-                            <li class="list-group-item problem-tag"
-                                onclick="location.href='/problems/?tag=水题'">
-                                <span class="badge">7</span>
-                                水题
-                            </li>
-                        
-                            <li class="list-group-item problem-tag"
-                                onclick="location.href='/problems/?tag=搜索'">
-                                <span class="badge">3</span>
-                                搜索
-                            </li>
-                        
-                       
+                        </c:forEach>
                         
                     </ul>
                 </div>
@@ -105,6 +90,7 @@
             </div>
         </div>
     </div>
+    <input type="hidden" id="categoryid">
      <%@include file="./foot.jsp" %>
 </body>
 </html>

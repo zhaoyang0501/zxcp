@@ -93,10 +93,10 @@
                 <a href="${pageContext.request.contextPath}/contests/${bean.id }/problems">题目列表</a>
             </li>
             <li role="presentation">
-                    <a href="${pageContext.request.contextPath}/contests/${bean.id }/submisstion">提交</a>
+                    <a href="${pageContext.request.contextPath}/contests/${bean.id }/submission">提交</a>
             </li>
             <li role="presentation">
-                  <a href="${pageContext.request.contextPath}/contests/${bean.id }/rank">提交</a>
+                  <a href="${pageContext.request.contextPath}/contests/${bean.id }/rankit">排名</a>
             </li>
         </ul>
         

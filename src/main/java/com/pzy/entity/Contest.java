@@ -22,6 +22,11 @@ public class Contest {
 	private Date begainDate;
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm")
 	private Date endDate;
+	/***
+	 * <option value="未开始">未开始</option>
+										<option value="进行中">进行中</option>
+										<option value="已结束">已结束</option>
+	 */
 	private String state;
 	public Long getId() {
 		return id;
