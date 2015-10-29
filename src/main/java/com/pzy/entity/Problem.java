@@ -2,6 +2,7 @@ package com.pzy.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -9,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 @Entity
@@ -19,6 +21,7 @@ public class Problem {
 	private Long id;
 	
 	private String name;
+	@Column(columnDefinition="TEXT") 
 	private String remark;
 	private String input;
 	private String output;
@@ -34,6 +37,23 @@ public class Problem {
 	private Date createDate;
 	private Long timelimit;
 	private Long cpulimit;
+	
+	@Transient
+	private Integer allNum;
+	@Transient
+	private Integer passNum;
+	public Integer getAllNum() {
+		return allNum;
+	}
+	public void setAllNum(Integer allNum) {
+		this.allNum = allNum;
+	}
+	public Integer getPassNum() {
+		return passNum;
+	}
+	public void setPassNum(Integer passNum) {
+		this.passNum = passNum;
+	}
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm")
 	public Date getCreateDate() {
 		return createDate;

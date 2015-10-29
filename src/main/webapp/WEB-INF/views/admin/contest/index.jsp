@@ -62,7 +62,7 @@
 							</div>
 							
 							<div class="widget-container">
-							<a class="btn btn-success" style="float: right; margin: 5px;" onclick="$.adminContest.showContestAddModal()"><i class="icon-plus"></i> 问题录入</a>
+							<a class="btn btn-success" style="float: right; margin: 5px;" onclick="$.adminContest.showContestAddModal()"><i class="icon-plus"></i> 比赛录入</a>
 								<table class="responsive table table-striped table-bordered"
 									id="dt_table_view">
 									<thead>

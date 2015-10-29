@@ -47,6 +47,4 @@ public class Category {
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
 	}
-	
-	
 }

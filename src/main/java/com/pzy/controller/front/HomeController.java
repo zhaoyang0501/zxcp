@@ -44,7 +44,11 @@ public class HomeController {
 	public String index() {
 		return "index";
 	}
-
+	@RequestMapping("msgbox")
+	public String msgbox(Model model ) {
+		model.addAttribute("categorys",categoryService.findAll());
+		return "msgbox";
+	}
 	@RequestMapping("problem")
 	public String problem(Model model ) {
 		model.addAttribute("categorys",categoryService.findAll());
@@ -68,6 +72,7 @@ public class HomeController {
 	@RequestMapping(value = "login",method = RequestMethod.POST)
 	public String dologin(String username,String password,Model model,HttpSession httpSession ) {
 		User user=userService.login(username, password);
+		model.addAttribute("categorys", categoryService.findAll());
 		if(user==null){
 			model.addAttribute("tip", "用户名密码不正确");
 			return "login";
@@ -78,7 +83,8 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "loginout",method = RequestMethod.GET)
-	public String loginout(HttpSession httpSession) {
+	public String loginout(HttpSession httpSession, Model model) {
+		model.addAttribute("categorys", categoryService.findAll());
 		httpSession.removeAttribute("user");
 		return "problem";
 	}

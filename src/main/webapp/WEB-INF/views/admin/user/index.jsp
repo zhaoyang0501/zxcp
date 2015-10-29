@@ -39,7 +39,7 @@
 					<div class="span12">
 						<div class="content-widgets light-gray">
 							<div class="widget-head  bondi-blue" >
-								<h3>商户管理</h3>
+								<h3>用户管理</h3>
 							</div>
 							<div class="box well form-inline">
 								<span>用户名：</span>
@@ -54,16 +54,13 @@
 									id="dt_table_view">
 									<thead>
 										<tr>
-											<th >商户ID</th>
-											<th >商户用户名</th>
+											<th >ID</th>
+											<th >用户名</th>
 											<th >商户密码</th>
-											<th >商户姓名</th>
-											<th >商户地址</th>
-											<th >商户电话</th>
-											<th >商户邮件</th>
-											<th >营业执照</th>
-											<th >法人代表</th>
-											<th >等级</th>
+											<th >姓名</th>
+											<th >地址</th>
+											<th >电话</th>
+											<th >邮件</th>
 											<th >加入日期</th>
 											<th >操作</th>
 										</tr>
@@ -124,34 +121,11 @@
 									<input type="text" name='email' id=email placeholder="">
 								</div>
 							</div>
-							<div class="control-group">
-								<label for="title" class="control-label">法人代表：</label>
-								<div class="controls">
-									<input type="text" name='manger' id=manger placeholder="">
-								</div>
-							</div>
 							
 							<div class="control-group">
 								<label for="title" class="control-label">电话：</label>
 								<div class="controls">
 									<input type="text" name='tel' id=tel placeholder="">
-								</div>
-							</div>
-							
-							<div class="control-group">
-								<label for="title" class="control-label">营业执照：</label>
-								<div class="controls">
-									<input type="text" name='yyzh' id=yyzh placeholder="">
-								</div>
-							</div>
-							<div class="control-group">
-								<label for="title" class="control-label">商户等级：</label>
-								<div class="controls">
-									<select name='level' id='level'>
-										<option  value="一级商户">一级商户</option>
-										<option value="二级商户">二级商户</option>
-										<option value="三级商户">三级商户</option>
-									</select>
 								</div>
 							</div>
 						</form>

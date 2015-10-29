@@ -54,7 +54,7 @@ jQuery.adminSubmission = {
 					}, {
 						"mDataProp" : "language"
 					}, {
-						"mDataProp" : "hard"
+						"mDataProp" : "problem.hard"
 					},{
 						"mDataProp" : "state"
 					}],

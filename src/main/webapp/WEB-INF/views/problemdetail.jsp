@@ -41,9 +41,6 @@
 		    mode: "javascript"
 		  });
 		$("#submit-code-button").bind("click", function(){
-			alert($("#code").val());
-			alert(editor.getValue());
-			alert($("input[name='language']").val());
 			$.ajax({
     			type : "POST",
     			url : $.ace.getContextPath() + "/submission/check",
@@ -58,7 +55,7 @@
     					$("#result").html("").html(
     							"<div class='alert alert-danger result' role='alert'>"+
     				            "<div class='alert-link'>"+json.state+"!&nbsp;&nbsp;"+
-    				            "<a href='/submission/'"+json.id+" target='_blank'>查看详情</a>"+
+    				            "<a href='${pageContext.request.contextPath}/submission/"+json.id+"' target='_blank'>查看详情</a>"+
     				           " </div> "+
     			           		" </div>"		
     					);
@@ -132,7 +129,7 @@
                <div class="problem-section">
                 <label class="problem-label">难度</label>
                 <p class="problem-detail">
-                        <span class="label label-success">${problem.type }</span>
+                        <span class="label label-success">${problem.hard }</span>
                 </p>
             	</div>
             	

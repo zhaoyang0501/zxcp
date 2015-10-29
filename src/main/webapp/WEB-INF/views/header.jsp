@@ -14,7 +14,8 @@
                 <li ><a href="${pageContext.request.contextPath}/problem">题目</a></li>
                 <li><a href="${pageContext.request.contextPath}/submission">提交</a></li>
                 <li><a href="${pageContext.request.contextPath}/contests">比赛</a></li>
-                <li><a href="${pageContext.request.contextPath}/about">关于</a></li>
+                   <li><a href="${pageContext.request.contextPath}/msgbox">讨论</a></li>
+                     <li><a href="${pageContext.request.contextPath}/about">关于</a></li>
       </ul>
       
       <c:if test="${sessionScope.user==null}">

@@ -40,7 +40,6 @@ jQuery.adminProblem = {
 								"value" : name
 							});
 						}
-						alert(categoryid);
 						if (!!categoryid) {
 							aoData.push({
 								"name" : "categoryid",
@@ -74,6 +73,16 @@ jQuery.adminProblem = {
 						'fnRender' : function(oObj, sVal) {
 							return "<a href='problemdetail/"+oObj.aData.id+"'> "+sVal+"</a>";
 							}
+					},
+					{
+						'aTargets' : [4],
+						'fnRender' : function(oObj, sVal) {
+							if(oObj.aData.allNum==0)
+								return "0%("+oObj.aData.passNum+"/"+oObj.aData.allNum+")";
+							else
+								return (Math.round((oObj.aData.passNum/oObj.aData.allNum)*100)/100)+ "%("+oObj.aData.passNum+"/"+oObj.aData.allNum+")";
+							
+						}
 					},
 					 {
 						'aTargets' : [ '_all' ],

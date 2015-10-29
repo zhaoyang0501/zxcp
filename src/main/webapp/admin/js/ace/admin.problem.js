@@ -57,7 +57,7 @@ jQuery.adminProblem = {
 					}, {
 						"mDataProp" : "reference"
 					}, {
-						"mDataProp" : "type"
+						"mDataProp" : "category.name"
 					}, {
 						"mDataProp" : "createDate"
 					},{
@@ -118,7 +118,7 @@ jQuery.adminProblem = {
     			dataType : "json",
     			success : function(json) {
     				if(json.state=='success'){
-    					$("*[name='name']").val(json.object.cpulimit);
+    					$("*[name='name']").val(json.object.name);
     					$("*[name='cpulimit']").val(json.object.cpulimit);
     					$("*[name='hard']").val(json.object.hard);
     					$("*[name='input']").val(json.object.input);

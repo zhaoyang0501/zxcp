@@ -41,9 +41,6 @@
 		    mode: "javascript"
 		  });
 		$("#submit-code-button").bind("click", function(){
-			alert($("#code").val());
-			alert(editor.getValue());
-			alert($("input[name='language']").val());
 			$.ajax({
     			type : "POST",
     			url : $.ace.getContextPath() + "/submission/check",
@@ -59,7 +56,7 @@
     					$("#result").html("").html(
     							"<div class='alert alert-danger result' role='alert'>"+
     				            "<div class='alert-link'>"+json.state+"!&nbsp;&nbsp;"+
-    				            "<a href='${pageContext.request.contextPath}/contests/${contest.id }/submission"+json.id+"' target='_blank'>查看详情</a>"+
+    				            "<a href='${pageContext.request.contextPath}/contests/${contest.id }/problems/${contestProblem.id}/submission/"+json.id+"' target='_blank'>查看详情</a>"+
     				           " </div> "+
     			           		" </div>"		
     					);
@@ -67,7 +64,7 @@
     					$("#result").html("").html(
     							"<div class='alert alert-info result' role='info'>"+
     				            "<div class='alert-link'>"+json.state+"!&nbsp;&nbsp;"+
-    				            "<a href='${pageContext.request.contextPath}/contests/${contest.id }/submission/"+json.id+"' target='_blank'>查看详情</a>"+
+    				            "<a href='${pageContext.request.contextPath}/contests/${contest.id }/problems/${contestProblem.id}/submission/"+json.id+"' target='_blank'>查看详情</a>"+
     				           " </div> "+
     			           		" </div>"		
     					);

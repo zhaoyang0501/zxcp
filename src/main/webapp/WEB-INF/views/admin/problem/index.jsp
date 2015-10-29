@@ -106,9 +106,10 @@
 								<label for="name" class="control-label">难度：</label>
 								<div class="controls">
 									<select  name="hard">
-										<option value="水题目">水题目</option>
-										<option value="位运算">位运算</option>
-										<option value="搜索">搜索</option>
+										<option value="简单">简单</option>
+										<option value="一般">一般</option>
+										<option value="困难">困难</option>
+										<option value="专家">专家</option>
 									</select>
 								</div>
 							</div>
@@ -116,64 +117,57 @@
 						    <div class="control-group">
 								<label for="name" class="control-label">标签：</label>
 								<div class="controls">
-									<select  name="type">
-										<option value="简单">简单</option>
-										<option value="一般">一般</option>
-										<option value="困难">困难</option>
+									<select  name="category.id">
+										<c:forEach items="${categorys }" var="bean">
+											<option value="${bean.id}">${bean.name }</option>
+										</c:forEach>
 									</select>
 								</div>
 							</div>
 							<div class="control-group">
 								<label for="name" class="control-label">描述：</label>
 								<div class="controls">
-									<textarea rows="3" cols=""  name='remark'>
-									</textarea>
+									<textarea rows="3" cols=""  name='remark'></textarea>
 								</div>
 							</div>
 							<div class="control-group">
 								<label for="name" class="control-label">输入描述：</label>
 								<div class="controls">
-									<textarea rows="3" cols=""  name='input'>
-									</textarea>
+									<textarea rows="3" cols=""  name='input'></textarea>
 								</div>
 							</div>
 							<div class="control-group">
 								<label for="name" class="control-label">输出描述：</label>
 								<div class="controls">
-									<textarea rows="3" cols=""  name='output'>
-									</textarea>
+									<textarea rows="3" cols=""  name='output'></textarea>
 								</div>
 							</div>
 							
 							<div class="control-group">
 								<label for="name" class="control-label">输入样例：</label>
 								<div class="controls">
-									<textarea rows="3" cols=""  name='inputemp'>
-									</textarea>
+									<textarea rows="3" cols=""  name='inputemp'></textarea>
 								</div>
 							</div>
 							
 							<div class="control-group">
 								<label for="name" class="control-label">输出样例：</label>
 								<div class="controls">
-									<textarea rows="3" cols=""  name='outputemp'>
-									</textarea>
+									<textarea rows="3" cols=""  name='outputemp'></textarea>
 								</div>
 							</div>
 							
 							<div class="control-group">
 								<label for="name" class="control-label">输入样例（用于验证）：</label>
 								<div class="controls">
-									<textarea rows="3" cols=""  name='inputok'>
-									</textarea>
+									<textarea rows="3" cols=""  name='inputok'></textarea>
 								</div>
 							</div>
 							
 							<div class="control-group">
-								<label for="name" class="control-label">输入样例（用于验证）：</label>
+								<label for="name" class="control-label">输出样例（用于验证）：</label>
 								<div class="controls">
-									<textarea rows="3" cols=""  name='outputok'>
-									</textarea>
+									<textarea rows="3" cols=""  name='outputok'></textarea>
 								</div>
 							</div>
 							

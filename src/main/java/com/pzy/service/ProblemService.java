@@ -17,11 +17,14 @@ import org.springframework.stereotype.Service;
 
 import com.pzy.entity.Problem;
 import com.pzy.repository.ProblemRepository;
+import com.pzy.repository.SubmissionRepository;
 
 @Service
 public class ProblemService {
 	@Autowired
 	private ProblemRepository problemRepository;
+	@Autowired
+	private SubmissionRepository submissionRepository;
 	
 	public List<Problem> findAll(){
 		return (List<Problem> )problemRepository.findAll();
@@ -44,8 +47,12 @@ public class ProblemService {
 				return predicate;
 			}
 		};
-		Page<Problem> result = (Page<Problem>) problemRepository.findAll(
-				spec, pageRequest);
+		Page<Problem> result = (Page<Problem>) problemRepository.findAll(spec, pageRequest);
+		
+		for(Problem problem:result.getContent()){
+			problem.setAllNum(submissionRepository.countAll(problem));
+			problem.setPassNum(submissionRepository.countAllPass(problem));
+		}
 		return result;
 	}
 	public Problem save(Problem problem) {
