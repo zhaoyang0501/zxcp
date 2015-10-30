@@ -70,6 +70,19 @@
             </div>
 
             <div class="col-md-3 col-lg-3">
+            <div class="panel panel-info">
+			    <div class="panel-heading">
+			        <h3 class="panel-title">
+			            <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+			            公告
+			        </h3></div>
+			    <div class="panel-body">
+			    
+			        
+			           <p>${notice.context }</p>
+			        
+			    </div>
+			</div>
                 <div class="panel panel-info">
                     <div class="panel-heading">
                         <h3 class="panel-title">

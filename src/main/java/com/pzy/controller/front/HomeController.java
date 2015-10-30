@@ -1,5 +1,6 @@
 package com.pzy.controller.front;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -7,16 +8,22 @@ import org.hibernate.stat.internal.CategorizedStatistics;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.pzy.entity.MsgBoard;
+import com.pzy.entity.Notice;
 import com.pzy.entity.Problem;
 import com.pzy.entity.Submission;
 import com.pzy.entity.User;
 import com.pzy.service.CategoryService;
 import com.pzy.service.ContestProblemService;
+import com.pzy.service.MsgBoardService;
+import com.pzy.service.NoticeService;
 import com.pzy.service.ProblemService;
 import com.pzy.service.SubmissionService;
 import com.pzy.entity.User;
@@ -40,13 +47,26 @@ public class HomeController {
 	private CategoryService categoryService;
 	@Autowired
 	private  ContestProblemService sontestProblemService;
+	@Autowired
+	private NoticeService noticeService;
+	@Autowired
+	private MsgBoardService msgBoardService;
+	
 	@RequestMapping("index")
 	public String index() {
 		return "index";
 	}
-	@RequestMapping("msgbox")
+	@RequestMapping(value = "msgbox" ,method = RequestMethod.GET)
 	public String msgbox(Model model ) {
-		model.addAttribute("categorys",categoryService.findAll());
+		model.addAttribute("msgboards",msgBoardService.findAll());
+		return "msgbox";
+	}
+	@RequestMapping(value = "msgbox" ,method = RequestMethod.POST)
+	public String domsgbox(Model model,MsgBoard msgboard ,HttpSession httpSession) {
+		httpSession.getAttribute("user");
+		msgboard.setUser((User)httpSession.getAttribute("user"));
+		msgBoardService.save(msgboard);
+		model.addAttribute("msgboards",msgBoardService.findAll());
 		return "msgbox";
 	}
 	@RequestMapping("problem")
@@ -115,6 +135,12 @@ public class HomeController {
 		bean=submisstionService.validateResult(bean);
 		submisstionService.save(bean);
 		return bean;
+	}
+	
+	@ModelAttribute
+	public void getNotice(Model model) {
+		List<Notice> list= noticeService.findAll();
+			model.addAttribute("notice", list==null?null:list.get(0));
 	}
 }
 
