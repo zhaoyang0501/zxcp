@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 @Entity
 @Table(name = "t_msgboard")
 public class MsgBoard {
@@ -23,7 +25,7 @@ public class MsgBoard {
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	private User user;
-	
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm")
 	private Date createDate;
 	
 	

@@ -56,6 +56,10 @@ public class HomeController {
 	public String index() {
 		return "index";
 	}
+	@RequestMapping("about")
+	public String about() {
+		return "about";
+	}
 	@RequestMapping(value = "msgbox" ,method = RequestMethod.GET)
 	public String msgbox(Model model ) {
 		model.addAttribute("msgboards",msgBoardService.findAll());
