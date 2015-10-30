@@ -4,7 +4,11 @@ import java.io.IOException;
 
 import com.pzy.entity.Submission;
 import com.pzy.exception.ValidateException;
-
+/***
+ * 运行自动评测的验证器 目前只有java实现，模板设计模式
+ * @author panchaoyang
+ *
+ */
 public abstract class   AutoValidater {
 	protected abstract void makeFile(String input) throws IOException;
 	protected abstract String Compile() throws IOException;

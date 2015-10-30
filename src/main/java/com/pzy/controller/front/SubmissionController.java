@@ -1,6 +1,5 @@
 package com.pzy.controller.front;
 import java.text.ParseException;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,16 +15,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.pzy.entity.Problem;
 import com.pzy.entity.Submission;
 import com.pzy.entity.User;
 import com.pzy.service.ProblemService;
 import com.pzy.service.SubmissionService;
-import com.pzy.entity.User;
-import com.pzy.service.ProblemService;
 import com.pzy.service.UserService;
 /***
- * @author Administrator
+ * @author 263708237@qq.com
  *
  */
 @Controller
@@ -38,6 +34,12 @@ public class SubmissionController {
 	private ProblemService problemService;
 	@Autowired
 	private SubmissionService submisstionService;
+	/***
+	 * 查看某次提交
+	 * @param id
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("{id}")
 	public String viewDetail(@PathVariable Long id,Model model ) {
 		model.addAttribute("bean",submisstionService.find(id));

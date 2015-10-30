@@ -29,6 +29,9 @@ public class Contest {
 										<option value="已结束">已结束</option>
 	 */
 	private String state;
+	private String type;
+	@Column(columnDefinition="TEXT") 
+	private String remark;
 	public Long getId() {
 		return id;
 	}
@@ -71,7 +74,4 @@ public class Contest {
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
-	private String type;
-	@Column(columnDefinition="TEXT") 
-	private String remark;
 }

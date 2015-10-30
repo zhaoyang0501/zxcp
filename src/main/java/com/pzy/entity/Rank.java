@@ -1,7 +1,7 @@
 package com.pzy.entity;
 
 /***
- * 分类
+ * 排名
  *
  */
 import javax.persistence.Entity;

@@ -23,7 +23,8 @@ import com.pzy.service.ProblemService;
 import com.pzy.service.SubmissionService;
 import com.pzy.service.UserService;
 /***
- * @author Administrator
+ * @author 263608237@qq.com
+ * 前台 比赛相关的控制器
  *
  */
 @Controller
@@ -40,18 +41,45 @@ public class ContestController {
 	private ContestProblemService contestProblemService;
 	@Autowired
 	private SubmissionService submissionService;
+	/***
+	 * 首页
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("")
+	public String index(Model model ) {
+		return "contest";
+	}
+	/***
+	 * 查看比赛详情
+	 * @param id
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("{id}")
 	public String viewDetail(@PathVariable Long id,Model model ) {
 		model.addAttribute("bean",contestService.find(id));
 		model.addAttribute("contestProblems",contestProblemService.findByContest(contestService.find(id)));
 		return "contestdetail";
 	}
+	/***
+	 * 比赛--> 题目列表
+	 * @param id
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("{id}/problems")
 	public String contestProblem(@PathVariable Long id,Model model ) {
 		model.addAttribute("bean",contestService.find(id));
 		model.addAttribute("problems",contestProblemService.findByContest(contestService.find(id)));
 		return "contestproblem";
 	}
+	/***
+	 * 比赛--> 提交
+	 * @param id
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("{id}/submission")
 	public String submission(@PathVariable Long id,Model model ) {
 		model.addAttribute("contest",contestService.find(id));
@@ -59,7 +87,12 @@ public class ContestController {
 		model.addAttribute("submissions",submissionService.findByContest(contestService.find(id)));
 		return "contestsubmission";
 	}
-	/**排名*/
+	/***
+	 * 比赛--> 排名
+	 * @param id
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("{id}/rankit")
 	public String rankit(@PathVariable Long id,Model model ) {
 		model.addAttribute("ranks",contestService.createReport(id));
@@ -75,7 +108,12 @@ public class ContestController {
 		model.addAttribute("bean",contestService.find(id));
 		return "contestrank";
 	}
-	
+	/***
+	 * 比赛--> 点击其中具体的某个题目
+	 * @param id
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("{id}/problems/{pid}")
 	public String contestProblem(@PathVariable Long id,@PathVariable Long pid, Model model ) {
 		model.addAttribute("contest",contestService.find(id));
@@ -83,7 +121,12 @@ public class ContestController {
 		return "contestproblemdetail";
 	}
 	
-	/**我的提交*/
+	/***
+	 * 比赛--> 我的提交
+	 * @param id
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("{id}/problems/{pid}/submission")
 	public String submission(@PathVariable Long pid, @PathVariable Long id,Model model ,HttpSession httpSession ) {
 		model.addAttribute("contest",contestService.find(id));
@@ -99,10 +142,16 @@ public class ContestController {
 		model.addAttribute("submission",submissionService.find(sid));
 		return "mycontestsubmissiondetail";
 	}
-	@RequestMapping("")
-	public String index(Model model ) {
-		return "contest";
-	}
+	/***
+	 * AJAX查询所有比赛
+	 * @param sEcho
+	 * @param iDisplayStart
+	 * @param iDisplayLength
+	 * @param name
+	 * @param httpSession
+	 * @return
+	 * @throws ParseException
+	 */
 	@RequestMapping(value = "/list", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> list(
