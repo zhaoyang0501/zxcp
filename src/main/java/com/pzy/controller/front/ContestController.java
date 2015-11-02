@@ -117,7 +117,7 @@ public class ContestController {
 	@RequestMapping("{id}/problems/{pid}")
 	public String contestProblem(@PathVariable Long id,@PathVariable Long pid, Model model ) {
 		model.addAttribute("contest",contestService.find(id));
-		model.addAttribute("contestProblem",contestProblemService.find(id));
+		model.addAttribute("contestProblem",contestProblemService.find(pid));
 		return "contestproblemdetail";
 	}
 	

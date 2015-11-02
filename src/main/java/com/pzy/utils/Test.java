@@ -26,7 +26,13 @@ public class Test {
  "       System.out.println((a+b));  "+
 "    }"+
 "}");*/
-		 run();
+		 try {
+			// complier();
+			run();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		 //complier();
 	       /* try {  
 	          
@@ -45,7 +51,7 @@ public class Test {
 	    }  
 	 public static void complier(){
 		 try {  
-	            Process process = Runtime.getRuntime().exec("javac d:/test/Main1.java"); 
+	            Process process = Runtime.getRuntime().exec("javac d:/work_path/java/Main.java"); 
 	            BufferedReader br = new BufferedReader(new InputStreamReader(process.getErrorStream()));  
 	            String s = null;
 	            String res="";
@@ -58,21 +64,24 @@ public class Test {
 	            e.printStackTrace();  
 	        }  
 	 }
-	 public static void run() throws IOException{
-	            Process process = Runtime.getRuntime().exec("D:\\test\\bat.bat"); 
-	            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));  
-	            DataOutputStream dataOut = new DataOutputStream(process.getOutputStream());
-                dataOut.writeBytes("1\n2\n");
-                dataOut.flush();
-                dataOut.close();
-                String result="";
-	            String line = bufferedReader.readLine();  
-	            while (line!=null) { 
-	            	 System.out.println("debug----"+line);
-	            	  result=line;
-	            	 line= bufferedReader.readLine(); 
-	            }
-	            System.out.println("debug11----"+result);
+	 public static void run() throws IOException, InterruptedException{
+		 Process process = Runtime.getRuntime().exec("d:\\work_path\\java\\bat.bat"); 
+         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));  
+         DataOutputStream dataOut = new DataOutputStream(process.getOutputStream());
+         dataOut.writeBytes("1\n34\n");
+        
+         dataOut.flush();
+         dataOut.close();
+         process.waitFor();
+         String result="";
+         String line = bufferedReader.readLine();  
+         while (line!=null) { 
+         	  System.out.println("运行-1命令----"+line);
+         	  result=line;
+         	 line= bufferedReader.readLine(); 
+         }
+         System.out.println("最终结果1----"+result);
+      
 	 }
 	 public static void createFile(String str) throws IOException{
 		  String lujing = "d:\\test\\Main.java";

@@ -15,6 +15,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import com.pzy.entity.Category;
 import com.pzy.entity.Problem;
 import com.pzy.repository.ProblemRepository;
 import com.pzy.repository.SubmissionRepository;
@@ -25,13 +26,14 @@ public class ProblemService {
 	private ProblemRepository problemRepository;
 	@Autowired
 	private SubmissionRepository submissionRepository;
-	
+	@Autowired
+	private CategoryService categoryService;
 	public List<Problem> findAll(){
 		return (List<Problem> )problemRepository.findAll();
 	}
 	
 	public Page<Problem> findAll(final int pageNumber, final int pageSize,
-			final String name) {
+			final String name,final Long category) {
 		PageRequest pageRequest = new PageRequest(pageNumber - 1, pageSize,
 				new Sort(Direction.DESC, "id"));
 
@@ -43,6 +45,10 @@ public class ProblemService {
 					predicate.getExpressions().add(
 							cb.like(root.get("name").as(String.class),"%"+ name
 									+ "%"));
+				}
+				if (category != null) {
+					predicate.getExpressions().add(
+							cb.equal(root.get("category").as(Category.class),categoryService.find(category)));
 				}
 				return predicate;
 			}

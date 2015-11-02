@@ -50,7 +50,6 @@ public class JavaValidater extends AutoValidater{
          DataOutputStream dataOut = new DataOutputStream(process.getOutputStream());
          dataOut.writeBytes(input);
          dataOut.flush();
-         dataOut.close();
          String result="";
          String line = bufferedReader.readLine();  
          while (line!=null) { 
@@ -58,6 +57,7 @@ public class JavaValidater extends AutoValidater{
          	  result=line;
          	 line= bufferedReader.readLine(); 
          }
+         dataOut.close();
          System.out.println("最终结果----"+result);
          return result;
 	}

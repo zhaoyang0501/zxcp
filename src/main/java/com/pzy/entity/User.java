@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 /***
  *
  */
@@ -20,6 +22,7 @@ public class User implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String username;
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm")
 	private Date createDate;
 	public Long getId() {
 		return id;

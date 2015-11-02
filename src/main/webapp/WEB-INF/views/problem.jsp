@@ -87,7 +87,7 @@
                 <div class="panel panel-info">
                     <div class="panel-heading">
                         <h3 class="panel-title">
-                            <span class="glyphicon glyphicon-tag" aria-hidden="true"></span>
+                         <span class="glyphicon glyphicon-tag" aria-hidden="true"></span>
                        		   分类
                         </h3>
                     </div>

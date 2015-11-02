@@ -203,7 +203,7 @@ public class HomeController {
 	@ModelAttribute
 	public void getNotice(Model model) {
 		List<Notice> list= noticeService.findAll();
-			model.addAttribute("notice", list==null?null:list.get(0));
+			model.addAttribute("notice", list==null||list.size()==0?null:list.get(0));
 	}
 }
 

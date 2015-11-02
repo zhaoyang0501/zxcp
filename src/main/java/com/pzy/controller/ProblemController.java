@@ -38,11 +38,13 @@ public class ProblemController {
 	public Map<String, Object> list(
 			@RequestParam(value = "sEcho", defaultValue = "1") int sEcho,
 			@RequestParam(value = "iDisplayStart", defaultValue = "0") int iDisplayStart,
-			@RequestParam(value = "iDisplayLength", defaultValue = "10") int iDisplayLength, String problemname
+			@RequestParam(value = "iDisplayLength", defaultValue = "10") int iDisplayLength,
+			String problemname,
+			Long categoryid
 			) throws ParseException {
 		int pageNumber = (int) (iDisplayStart / iDisplayLength) + 1;
 		int pageSize = iDisplayLength;
-		Page<Problem> problems = problemService.findAll(pageNumber, pageSize, problemname);
+		Page<Problem> problems = problemService.findAll(pageNumber, pageSize, problemname,categoryid);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("aaData", problems.getContent());
 		map.put("iTotalRecords", problems.getTotalElements());

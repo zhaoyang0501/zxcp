@@ -62,7 +62,7 @@ jQuery.adminUser = {
 						"mDataProp" : "tel"
 					}, {
 						"mDataProp" : "email"
-					},, {
+					}, {
 						"mDataProp" : "createDate"
 					},{
 						"mDataProp" : ""
