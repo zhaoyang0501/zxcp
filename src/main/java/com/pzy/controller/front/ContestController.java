@@ -130,7 +130,7 @@ public class ContestController {
 	@RequestMapping("{id}/problems/{pid}/submission")
 	public String submission(@PathVariable Long pid, @PathVariable Long id,Model model ,HttpSession httpSession ) {
 		model.addAttribute("contest",contestService.find(id));
-		model.addAttribute("contestProblem",contestProblemService.find(id));
+		model.addAttribute("contestProblem",contestProblemService.find(pid));
 		model.addAttribute("submissions",submissionService.findByContestProblemAndUser(contestProblemService.find(pid),(User)httpSession.getAttribute("user")));
 		return "mycontestsubmission";
 	}

@@ -71,8 +71,7 @@ jQuery.adminUser = {
 						{
 							'aTargets' : [8],
 							'fnRender' : function(oObj, sVal) {
-								return"  <button class=\"btn2 btn-info\" onclick=\"$.adminUser.deleteUser("+oObj.aData.id+")\"><i class=\"icon-trash\"></i> 删除</button>" +
-								" <button class=\"btn2 btn-info\" onclick=\"$.adminUser.showEdit("+oObj.aData.id+")\"><i class=\"icon-pencil\"></i>修改</button>";
+								return"  <button class=\"btn2 btn-info\" onclick=\"$.adminUser.deleteUser("+oObj.aData.id+")\"><i class=\"icon-trash\"></i> 删除</button>";
 							}
 						},
 					 {

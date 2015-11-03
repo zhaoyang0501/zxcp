@@ -57,7 +57,7 @@ jQuery.adminContestproblem = {
 					}, {
 						"mDataProp" : "problem.reference"
 					}, {
-						"mDataProp" : "problem.type"
+						"mDataProp" : "problem.category.name"
 					}, {
 						"mDataProp" : "problem.createDate"
 					},{
