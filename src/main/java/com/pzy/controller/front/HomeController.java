@@ -79,6 +79,7 @@ public class HomeController {
 	public String domsgbox(Model model,MsgBoard msgboard ,HttpSession httpSession) {
 		httpSession.getAttribute("user");
 		msgboard.setUser((User)httpSession.getAttribute("user"));
+		msgboard.setCreateDate(new Date());
 		msgBoardService.save(msgboard);
 		model.addAttribute("msgboards",msgBoardService.findAll());
 		return "msgbox";
