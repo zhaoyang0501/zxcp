@@ -48,7 +48,7 @@ public class JavaValidater extends AutoValidater{
 		 Process process = Runtime.getRuntime().exec(workpath+"bat.bat"); 
          BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));  
          DataOutputStream dataOut = new DataOutputStream(process.getOutputStream());
-         dataOut.writeBytes(input);
+         dataOut.writeBytes(input.replace("\r", "")+"\n");
          dataOut.flush();
          String result="";
          String line = bufferedReader.readLine();  
