@@ -1,10 +1,12 @@
 package com.pzy.controller.front;
 import java.text.ParseException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.time.DateFormatUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -117,6 +119,7 @@ public class ContestController {
 	@RequestMapping("{id}/problems/{pid}")
 	public String contestProblem(@PathVariable Long id,@PathVariable Long pid, Model model ) {
 		model.addAttribute("contest",contestService.find(id));
+		model.addAttribute("begain",DateFormatUtils.format(new Date(System.currentTimeMillis()), "yyyy-MM-dd HH:mm:ss"));
 		model.addAttribute("contestProblem",contestProblemService.find(pid));
 		return "contestproblemdetail";
 	}

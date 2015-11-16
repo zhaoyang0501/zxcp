@@ -47,6 +47,7 @@
     			dataType : "json",
     			data:{
     				"code":editor.getValue(),
+    				"begain": "${begain}",
     				"problemid":"${contestProblem.problem.id}",
     				"contestProblemid":"${contestProblem.id}",
     				"language":$("input[name='language']:checked").val()	

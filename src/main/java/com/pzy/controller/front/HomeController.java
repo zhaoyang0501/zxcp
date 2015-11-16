@@ -1,9 +1,11 @@
 package com.pzy.controller.front;
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -180,16 +182,19 @@ public class HomeController {
 	 * @param model
 	 * @param httpSession
 	 * @return
+	 * @throws ParseException 
 	 */
 	@ResponseBody
 	@RequestMapping(value = "submission/check", method = RequestMethod.POST)
-	public Submission submission(Long contestProblemid, Long problemid,String code,String language, Model model,HttpSession httpSession ) {
+	public Submission submission(Long contestProblemid, Long problemid,String code,String language, Model model,HttpSession httpSession,String begain ) throws ParseException {
 		Submission bean=new Submission();
 		bean.setCreateDate(new Date());
 		bean.setInput(code);
 		bean.setLanguage(language);
-		if(contestProblemid!=null)
+		if(contestProblemid!=null){
 			bean.setContestProblem(sontestProblemService.find(contestProblemid));
+			bean.setSpend( Math.floor((System.currentTimeMillis()- DateUtils.parseDate(begain, "yyyy-MM-dd HH:mm:ss").getTime())/1000.00D));
+		}
 		bean.setProblem(this.problemService.find(problemid));
 		bean.setUser((User)httpSession.getAttribute("user"));
 		bean=submisstionService.validateResult(bean);
