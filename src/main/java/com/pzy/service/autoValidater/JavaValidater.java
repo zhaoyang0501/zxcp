@@ -50,16 +50,24 @@ public class JavaValidater extends AutoValidater{
          DataOutputStream dataOut = new DataOutputStream(process.getOutputStream());
          dataOut.writeBytes(input.replace("\r", "")+"\n");
          dataOut.flush();
-         String result="";
-         String line = bufferedReader.readLine();  
-         while (line!=null) { 
-         	  System.out.println("运行-命令----"+line);
-         	  result=line;
-         	 line= bufferedReader.readLine(); 
+         
+         String s = null;
+         String res="";
+         while ((s = bufferedReader.readLine()) != null) {  
+         		res+=s+"\n";
+         	  System.out.println("最终结果1----"+s);
          }
+         
+//         String result="";
+//         String line = bufferedReader.readLine();  
+//         while (line!=null) { 
+//         	  System.out.println("运行-命令----"+line);
+//         	  result=line;
+//         	 line= bufferedReader.readLine(); 
+//         }
          dataOut.close();
-         System.out.println("最终结果----"+result);
-         return result;
+         
+         return res;
 	}
 
 }

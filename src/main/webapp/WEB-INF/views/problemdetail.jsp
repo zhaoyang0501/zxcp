@@ -148,7 +148,7 @@
                         <input type="radio" name="language" value="2"> C++ (G++ 4.3)
                     </label>
                     <label class="radio-inline">
-                        <input type="radio" name="language" value="3" > Java (Oracle JDK 1.7)
+                        <input checked="checked" type="radio" name="language" value="3" > Java (Oracle JDK 1.7)
                     </label>
                 </div>
             </div>
