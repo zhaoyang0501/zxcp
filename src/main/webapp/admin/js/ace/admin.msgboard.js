@@ -56,14 +56,17 @@ jQuery.adminMsgboard = {
 						"mDataProp" : "msg"
 					}, {
 						"mDataProp" : "createDate"
+					}, {
+						"mDataProp" : "reply"
 					},{
 						"mDataProp" : ""
 					}],
 					"aoColumnDefs" : [
 						{
-							'aTargets' : [4],
+							'aTargets' : [5],
 							'fnRender' : function(oObj, sVal) {
-								return"  <button class=\"btn2 btn-info\" onclick=\"$.adminMsgboard.deleteMsgboard("+oObj.aData.id+")\"><i class=\"icon-trash\"></i> 删除</button>" ;
+								return "  <button class=\"btn2 btn-info\" onclick=\"$.adminMsgboard.reply("+oObj.aData.id+")\"><i class=\"icon-pencil\"></i>回复</button>"+
+								"  <button class=\"btn2 btn-info\" onclick=\"$.adminMsgboard.deleteMsgboard("+oObj.aData.id+")\"><i class=\"icon-trash\"></i> 删除</button>" ;
 								
 							}
 						},
@@ -81,6 +84,27 @@ jQuery.adminMsgboard = {
 			}
 
 		},
+		reply :function(id){
+			bootbox.prompt("请输入回复内容",function(r){
+				$.ajax({
+        			type : "POST",
+        			url : $.ace.getContextPath() + "/admin/msgboard/reply/"+id,
+        			dataType : "json",
+        			data:{reply:r},
+        			success : function(json) {
+        				if(json.state=='success'){
+        					noty({"text":""+ json.msg +"","layout":"top","type":"success","timeout":"2000"});
+        					$.adminMsgboard.initSearchDataTable();
+        				}else{
+        					noty({"text":""+ json.resultMap.msg +"","layout":"top","type":"warning"});
+        				}
+        			}
+        		});
+				
+			});
+			
+		},
+		
 		deleteMsgboard :function(id){
 			bootbox.confirm( "是否确认删除？", function (result) {
 	            if(result){

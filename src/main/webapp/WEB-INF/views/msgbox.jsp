@@ -49,6 +49,9 @@
 						 <div class="panel-body">
 							<p class='lead'>发表者：${bean.user.username }</p>
 							<p>${bean.msg }</p>
+							<c:if test="${bean.reply!=null }">
+								<p>管理员于${bean.replyDate }回复:${bean.reply}</p>
+							</c:if>
 						 </div>
 					  </div>
      	</div>

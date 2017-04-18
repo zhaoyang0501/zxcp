@@ -29,6 +29,11 @@ public class MsgBoard {
 	private Date createDate;
 	
 	
+	private String reply;
+	
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm")
+	private  Date replyDate;
+	
 	public void setReplyfor(MsgBoard replyfor) {
 		this.replyfor = replyfor;
 	}
@@ -59,4 +64,17 @@ public class MsgBoard {
 	public MsgBoard getReplyfor() {
 		return replyfor;
 	}
+	public String getReply() {
+		return reply;
+	}
+	public void setReply(String reply) {
+		this.reply = reply;
+	}
+	public Date getReplyDate() {
+		return replyDate;
+	}
+	public void setReplyDate(Date replyDate) {
+		this.replyDate = replyDate;
+	}
+	
 }

@@ -91,4 +91,18 @@ public class MsgBoardController {
 		map.put("msg", "成功");
 		return map;
 	}
+	@RequestMapping(value = "/reply/{id}")
+	@ResponseBody
+	public Map<String, Object> get(@PathVariable Long id ,String reply) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		MsgBoard msg = msgboardService.find(id);
+		msg.setReply(reply);
+		msg.setReplyDate(new Date());
+		msgboardService.save(msg);
+		map.put("state", "success");
+		map.put("msg", "成功");
+		return map;
+	}
+	
 }

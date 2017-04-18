@@ -4,7 +4,7 @@
   <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <a class="navbar-brand" href="${pageContext.request.contextPath}/problem">首页</a>
+      <a style="color: blue;" class="navbar-brand" href="${pageContext.request.contextPath}/problem">程序设计评判系统</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->

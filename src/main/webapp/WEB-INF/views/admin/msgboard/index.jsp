@@ -5,7 +5,7 @@
 <%@ include file="../common/meta.jsp"%>
 <head>
 <script type="text/javascript" src="${pageContext.request.contextPath}/admin/js/ace/admin.msgboard.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/admin/js/falgun/bootbox.js"></script>
+<script src="https://cdn.bootcss.com/bootbox.js/4.4.0/bootbox.js"></script>
 <script src="${pageContext.request.contextPath}/admin/js/falgun/bootstrap-datetimepicker.min.js"></script>
 <script src="${pageContext.request.contextPath}/admin/js/falgun/bootstrap-datetimepicker.zh-CN.js"></script>
 <script type="text/javascript">
@@ -56,6 +56,7 @@
 											<th >留言人</th>
 											<th >留言内容</th>
 											<th >留言日期</th>
+											<th >回复内容</th>
 											<th >操作</th>
 										</tr>
 									</thead>
